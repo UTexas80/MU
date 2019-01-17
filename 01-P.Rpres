@@ -1,0 +1,33 @@
+Maryville University Enrollment Report
+========================================================
+author: Glen C. Falk
+date:  January 17, 2019
+autosize: true
+
+```{r}
+#Load the project
+library("ProjectTemplate"); load.project()
+```
+
+First Slide
+========================================================
+
+For more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+Slide With Code
+========================================================
+
+```{r}
+summary(collegeinfo)
+```
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+plot(cars)
+```

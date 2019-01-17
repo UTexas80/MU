@@ -1,0 +1,2 @@
+# barplot(colSums(enroll_length[-1]), names.arg = col_hdr_yr, ylab = "Total Enrollment")
+# barplot(colSums(enroll_length[-1]), names.arg = col_hdr_yr, xlab = "Year", ylab = "Total Enrollment", main = "Maryville U", font.main = 4, col.main = "Red", cex.main = 1.5, sub = "Enrollment Trends", font.sub = 4, col.sub = "Red", cex.sub = 1.5)  
