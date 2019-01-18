@@ -7,7 +7,7 @@ data_loading_header: TRUE
 data_ignore:
 data_tables: TRUE
 load_libraries: TRUE
-libraries: checkpoint, data.table, devtools, dplyr, DT, flexdashboard, flextable, formatR, formattable, futile.logger, knitr, lubridate, openxlsx, orca, plyr, plotly, ProjectTemplate, readxl, reprex, reshape2, rmarkdown,stringr, tidyverse, tryCatchLog, xlsx, xtable, zoo
+libraries: checkpoint, data.table, devtools, dplyr, DT, flexdashboard, flextable, formatR, formattable, futile.logger, knitr, lubridate, openxlsx, orca, plyr, plotly, ProjectTemplate, readxl, reprex, reshape2, rmarkdown, shiny, stringr, tidyverse, treemap, tryCatchLog, xlsx, xtable, zoo
 logging: TRUE
 logging_level: INFO
 munging: TRUE

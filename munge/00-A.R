@@ -66,6 +66,8 @@ dt <- enroll[, 3:5]
 names(dt) <- c("type", "length", "enrollment")  
 dt[, Mean:=mean(enrollment), by=list(type, length)]
 dt<-dt[, -3]
-enroll_distinct<- dt %>% distinct(type, length, Mean)
 
+#df <- mydata[ -c(1,3:4) ]                                                      # drop column by index number
+
+enroll_distinct<- dt %>% distinct(type, length, Mean)
 enroll.delta.college <-  inner_join(enroll.delta, collegeinfo)

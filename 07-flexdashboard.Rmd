@@ -1,0 +1,226 @@
+---
+title: "Annual Reports"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+Sidebar {.sidebar}
+=====================================
+
+```{r}
+# shiny inputs defined here
+```
+
+Charts {data-navmenu="Fin Aid Summary"}
+=====================================
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Cost of Attendance-Graduate
+
+```{r}
+pdf_tbl <- readRDS("pdf2.rds")
+pdf_tbl
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Cost of Attendance-Graduate Resident
+
+```{r echo=FALSE, COA-Grad-Resident}
+c_pie_grad_res <- readRDS("c_pie_grad_res.rds")
+c_pie_grad_res
+```
+
+### Cost of Attendance-Graduate NonResident
+
+```{r}
+c_pie_grad_res <- readRDS("c_pie_grad_non.rds")
+c_pie_grad_non
+```
+
+ChartsTables {data-navmenu="Fin Aid Summary"}
+=====================================
+
+
+Row
+-----------------------------------------------------------------------
+
+### Cost of Attendance-Graduate Resident
+
+```{r echo=FALSE, COA-Grad-ResidentA}
+c_pie_grad_res <- readRDS("c_pie_grad_res.rds")
+c_pie_grad_res
+```
+
+### Cost of Attendance-Graduate NonResident
+
+```{r}
+c_pie_grad_res <- readRDS("c_pie_grad_non.rds")
+c_pie_grad_non
+```
+
+Row
+-----------------------------------------------------------------------
+
+### Cost of Attendance-Graduate
+
+```{r}
+pdf_tbl <- readRDS("pdf2.rds")
+pdf_tbl
+```
+
+Tables {data-navmenu="Fin Aid Summary"}
+=====================================  
+
+Row
+-------------------------------------
+    
+### Chart 1
+    
+```{r}
+coa.gr.tree <- readRDS("coa.gr.tree.rds")
+treemap(coa.gr.tree,                                                                                #Your data frame object
+        index=c("residency","desc"),                                                                #A list of your categorical variables
+        vSize = "cost",                                                                             #This is your quantitative variable
+        type="index",                                                                               #Type sets the organization and color scheme of your treemap
+        palette = "Blues",                                                                          #Select your color palette from the RColorBrewer presets or make your own.
+        title="Cost of Attendance",                                                                 #Customize your title
+        fontsize.title = 14                                                                         #Change the font size of the title
+        )
+```
+   
+Row
+-------------------------------------
+    
+### Chart 2
+    
+```{r}
+
+```
+    
+### Chart 3
+
+```{r}
+
+```
+
+Charts {data-navmenu="UG COA"}
+=====================================     
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Cost of Attendance-Graduate Resident
+
+```{r echo=FALSE, COA-Grad-Resident2}
+c_pie_grad_res <- readRDS("c_pie_grad_res.rds")
+c_pie_grad_res
+```
+
+### Cost of Attendance-Graduate Non Resident
+
+```{r}
+t_coa <- readRDS("t_coa.rds")
+t_coa
+```
+
+Tables {data-navmenu="UG COA"}
+=====================================    
+
+Row
+-------------------------------------
+    
+### Cost of Attendance-Undergraduate Resident
+
+```{r echo=FALSE, COA-Undergrad-Resident}
+c_pie_ug_res <- readRDS("c_pie_ug_res.rds")
+c_pie_ug_res
+```
+    
+### Cost of Attendance-Undergraduate Non Resident
+
+```{r echo=FALSE, COA-Undergrad-NonResident}
+c_pie_ug_non <- readRDS("c_pie_ug_non.rds")
+c_pie_ug_non
+```
+
+Row
+-------------------------------------
+    
+### Chart 1
+    
+```{r}
+
+```
+
+Page 1 {data-navmenu="Fin Aid Awd"}
+=====================================    
+
+Row
+-------------------------------------
+    
+### Financial Aid Award-Undergraduate Resident
+
+```{r echo=FALSE, Fin-Aid-Awd-Undergrad-Resident}
+c_pie_ug_res <- readRDS("c_pie_ug_res.rds")
+c_pie_ug_res
+```
+    
+### Financial Aid Award Non Resident
+
+```{r echo=FALSE, Fin-Aid-Awd-NonResident}
+c_pie_ug_non <- readRDS("c_pie_ug_non.rds")
+c_pie_ug_non
+```
+
+Column
+-------------------------------------
+    
+### Financial Aid Award
+    
+```{r}
+
+```
+
+
+
+
+
+Page 2 {data-navmenu="Fin Aid Awd"}
+=====================================    
+
+Column 
+-------------------------------------
+    
+### Chart 1
+    
+```{r}
+pdf_tbl <- readRDS("pdf2.rds")
+pdf_tbl
+```
+   
+Column {.tabset}
+-------------------------------------
+   
+### Chart 2
+
+```{r echo=FALSE, Fin-Aid-Awd2-Undergrad-Resident}
+c_pie_ug_res <- readRDS("c_pie_ug_res.rds")
+c_pie_ug_res
+```   
+ 
+### Chart 3
+    
+```{r echo=FALSE, Fin-Aid-Awd2-NonResident}
+c_pie_ug_non <- readRDS("c_pie_ug_non.rds")
+c_pie_ug_non
+```

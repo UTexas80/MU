@@ -1,0 +1,270 @@
+---
+title: "Enrollment Trends"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: spacelab    
+---
+
+```{r setup, include=TRUE}
+library(data.table)
+library(dplyr)
+library(DT)
+library(flexdashboard)
+library(formattable)
+library(plotly)
+library(treemap)
+load("mu.RData")
+```
+
+Charts {data-navmenu="Enrollment Summary"}
+=====================================
+
+Row {data-width=500}
+-----------------------------------------------------------------------
+
+### Total Enrollment By Year
+
+```{r echo=FALSE, Total-Enrollment-by-Year}
+viz_bar_enroll_by_yr <- readRDS("viz_bar_enroll_by_yr.rds")
+viz_bar_enroll_by_yr
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Six Year Enrollment Trend
+
+```{r echo=FALSE, include=TRUE, Total-Enrollment-Trends}
+valueBox(percent(enroll.delta.tot[1,1]), icon = "fa-pencil", href="#details")
+```
+
+
+### Enrollment TYpe by Year
+
+```{r}
+pdf3<-datatable((enroll.delta.type.length), options = list(
+  searching = FALSE,
+  paging = FALSE,
+  lengthMenu = c(5, 10, 15, 20)
+))
+pdf3 <- formatPercentage(pdf3,9, digits = 0)
+pdf3 <- formatCurrency(pdf3, 3:8, currency = "", interval = 3, mark = ",", digits = 0, before = TRUE)
+pdf3
+```
+
+
+### Current Year Enrollment Treemap
+
+```{r}
+x<-enroll.delta.type.length[-5,c(1:2,8:9)]
+  x$label <- paste(x$Type, x$Length, sep = "\n")
+  treemap(x,
+    index=c("label"),
+    vSize="2016",
+    vColor="itd_delta",
+    type="value")     
+```
+
+Tables {data-navmenu="Enrollment Summary"}
+=====================================  
+
+Column
+-------------------------------------
+    
+### Table 1
+    
+```{r}
+knitr::kable(enroll.delta.type.length)
+```
+   
+Row
+-------------------------------------
+    
+### Table 2
+    
+```{r}
+
+```
+    
+### Table 3
+
+```{r}
+
+```
+
+Length {data-navmenu="Institution Overview"}
+=====================================
+
+
+Row
+-----------------------------------------------------------------------
+
+### Program Length - 2 Year
+
+```{r echo=FALSE, Length-Two-Yr}
+viz.line.length.yoy2 <- readRDS("viz.line.length.yoy2.rds")
+viz.line.length.yoy2
+```
+
+Row
+-----------------------------------------------------------------------
+
+### Program Length - 4 Year
+
+```{r echo=FALSE, Length-Four-Yr}
+viz.line.length.yoy4 <- readRDS("viz.line.length.yoy4.rds")
+viz.line.length.yoy4
+```
+
+Type {data-navmenu="Institution Overview"}
+=====================================  
+
+Row
+-------------------------------------
+    
+### Program Type - Independent
+    
+```{r echo=FALSE, Type-Independent}
+viz.line.type.ind <- readRDS("viz.line.type.ind.rds")
+viz.line.type.ind
+```
+   
+Row
+-------------------------------------
+    
+### Program Type - Public
+    
+```{r echo=FALSE, Type-Public}
+viz.line.type.public <- readRDS("viz.line.type.public.rds")
+viz.line.type.public
+```
+
+Charts {data-navmenu="College Detail"}
+=====================================     
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Cost of Attendance-Graduate Resident
+
+```{r echo=FALSE, COA-Grad-Resident2}
+
+```
+
+### Cost of Attendance-Graduate Non Resident
+
+```{r}
+
+```
+
+Tables {data-navmenu="College Detail"}
+=====================================    
+
+Row {data-width=450}
+-------------------------------------
+    
+### Top 10 Institutions
+
+```{r echo=FALSE, Top-10-Institutions}
+delta.college<-data.table(enroll.delta.college[, c(3:5,2)])
+delta.college[is.na(delta.college) ] <- 0
+
+delta.college.top <- delta.college %>%
+arrange(desc(itd_delta)) %>% 
+slice(1:10) 
+
+delta.college.top <- datatable((delta.college.top), options = list(
+  searching = FALSE,
+  paging = FALSE,
+  lengthMenu = c(5, 10, 15, 20)
+))
+delta.college.top <- formatPercentage(delta.college.top, 4, digits = 2)
+delta.college.top
+
+```
+    
+### Bottom 10 Institutions
+
+```{r echo=FALSE, Bottom-10-Institutions}
+delta.college.bottom <- delta.college %>%
+arrange(itd_delta) %>% 
+slice(1:10) 
+
+delta.college.bottom <- datatable((delta.college.bottom), options = list(
+  searching = FALSE,
+  paging = FALSE,
+  lengthMenu = c(5, 10, 15, 20)
+))
+delta.college.bottom <- formatPercentage(delta.college.bottom, 4, digits = 2)
+delta.college.bottom
+```
+
+Row
+-------------------------------------
+    
+### Institutional Ranking
+    
+```{r}
+viz.bar.college.rank <- readRDS("viz.bar.college.rank")
+viz.bar.college.rank
+```
+
+Page 1 {data-navmenu="Fin Aid Awd"}
+=====================================    
+
+Row
+-------------------------------------
+    
+### Financial Aid Award-Undergraduate Resident
+
+```{r echo=FALSE, Fin-Aid-Awd-Undergrad-Resident}
+
+```
+    
+### Financial Aid Award Non Resident
+
+```{r echo=FALSE, Fin-Aid-Awd-NonResident}
+
+```
+
+Column
+-------------------------------------
+    
+### Financial Aid Award
+    
+```{r}
+
+```
+
+
+
+
+
+Page 2 {data-navmenu="Fin Aid Awd"}
+=====================================    
+
+Column 
+-------------------------------------
+    
+### Chart 1
+    
+```{r}
+
+```
+   
+Column {.tabset}
+-------------------------------------
+   
+### Chart 2
+
+```{r echo=FALSE, Fin-Aid-Awd2-Undergrad-Resident}
+
+```   
+ 
+### Chart 3
+    
+```{r echo=FALSE, Fin-Aid-Awd2-NonResident}
+
+```

@@ -1,0 +1,41 @@
+---
+title: "Enrollment Trends"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: spacelab
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+Sidebar {.sidebar}
+=====================================
+Column {data-width=650}
+
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r echo=FALSE, Total-Enrollment-by-Year}
+viz_bar_enroll_by_yr <- readRDS("viz_bar_enroll_by_yr.rds")
+viz_bar_enroll_by_yr
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+
